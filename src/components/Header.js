@@ -1,7 +1,6 @@
-import React, { PureComponent, Fragment } from 'react';
-import Link from 'react-router-dom/es/Link';
-import styled from 'styled-components';
-import { withRouter } from 'react-router-dom'
+import React, { Fragment, PureComponent } from 'react'
+import Link from 'react-router-dom/es/Link'
+import styled from 'styled-components'
 
 const StyledHeader = styled.div`
   margin: 20px 0;

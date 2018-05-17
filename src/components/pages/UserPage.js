@@ -46,7 +46,7 @@ export class UserPage extends PureComponent {
         <h2>{user.login}</h2>
         <p>Followers: {user.followers}</p>
         <p>Public repos: {user.public_repos}</p>
-        <img src={user.avatar_url} width={250} height={250}/><br/>
+        <img src={user.avatar_url} width={250} height={250} alt={user.login}/><br/>
         <Followers key={user.id} login={user.login}/>
       </StyledProfileDiv>
     );
