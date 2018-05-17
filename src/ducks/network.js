@@ -29,7 +29,7 @@ const message = handleActions({
 
 const getIsNetworkErrorPresent = state => state.network.error !== '';
 const getError = state => state.network.error;
-const getMessage = state => state.network.messages;
+const getMessage = state => state.network.message;
 
 export default combineReducers({
   error,

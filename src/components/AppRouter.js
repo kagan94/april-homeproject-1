@@ -8,13 +8,13 @@ import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import { connect } from 'react-redux'
 import Header from './Header'
-import { getError } from '../ducks/network'
+import { getIsNetworkErrorPresent, getMessage } from '../ducks/network'
 
 export class AppRouter extends Component {
   render() {
-    const {isAuthorized, logout, networkError} = this.props;
+    const {isAuthorized, logout, isNetworkError, networkError} = this.props;
 
-    if (networkError) return <p>Ошибка сети: {networkError}</p>;
+    if (isNetworkError) return <p>Ошибка сети: {networkError}</p>;
 
     return (
       <Fragment>
@@ -33,7 +33,8 @@ export class AppRouter extends Component {
 
 const mapStateToProps = state => ({
   isAuthorized: getIsAuthorized(state),
-  networkError: getError(state),
+  isNetworkError: getIsNetworkErrorPresent(state),
+  networkError: getMessage(state),
 });
 const mapDispatchToProps = {logout};
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppRouter));

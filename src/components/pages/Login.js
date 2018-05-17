@@ -14,7 +14,7 @@ const StyledLogin = styled.div`
 
 export class Login extends PureComponent {
   state = {
-    access_token: '8e05091c87683a7edbd4f65d5c06793554a5e679', // todo: change to empty val ''
+    access_token: '',
   }
 
   handleChange = (e) => {
