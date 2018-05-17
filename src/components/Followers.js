@@ -1,35 +1,46 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux';
-import { getIsFetching, getFollowersIds, getError, fetchFollowersRequest } from '../ducks/followers';
+import { getIsFetching, getFollowers, getError, fetchFollowersRequest } from '../ducks/followers';
 import { Preloader } from './Preloader'
+import Follower from './Follower'
+import styled from 'styled-components';
 
-class Followers extends PureComponent {
+const StyledFollowers = styled.div`
+  width: 700px
+  margin: 0 auto
+`;
+
+export class Followers extends PureComponent {
 
   componentDidMount() {
-    this.props.fetchFollowersRequest();
+    const {login} = this.props;
+    this.props.fetchFollowersRequest(login);
+  }
+
+  renderFollowers(followers) {
+    return followers.map(el =>
+      <Follower key={el.id} login={el.login} avatar={el.avatar_url}/>
+    );
   }
 
   render() {
-    const {isFetching, followersIds, error} = this.props;
+    const {isFetching, followers, error} = this.props;
 
     if (isFetching) return <Preloader/>;
     if (error) return <p>Ошибка при загрузке: {error}</p>;
 
-    /*TODO: TBD */
     return (
-      <div>
-        {followersIds}
-      </div>
+      <StyledFollowers>
+        {this.renderFollowers(followers)}
+      </StyledFollowers>
     );
   }
 }
 
 const mapStateToProps = state => ({
   isFetching: getIsFetching(state),
-  followersIds: getFollowersIds(state),
+  followers: getFollowers(state),
   error: getError(state),
 });
-const mapDispatchToProps = state => ({
-  fetchFollowersRequest,
-});
+const mapDispatchToProps = {fetchFollowersRequest};
 export default connect(mapStateToProps, mapDispatchToProps)(Followers);

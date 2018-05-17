@@ -1,11 +1,20 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
-class Follower extends Component {
+const StyledFollower = styled.div`
+  display: inline-block
+  margin: 10px
+`;
+
+export class Follower extends PureComponent {
   render() {
-    /*TODO: TBD */
+    const {login, avatar} = this.props;
     return (
-      <div>
-      </div>
+      <StyledFollower>
+        <Link to={`/users/${login}`}><b>{login}</b></Link><br/>
+        <img src={avatar} alt={login} width={100} height={100}/>
+      </StyledFollower>
     );
   }
 }

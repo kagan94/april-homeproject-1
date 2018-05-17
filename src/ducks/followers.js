@@ -23,7 +23,7 @@ const isFetching = handleActions({
   false,
 );
 
-const ids = handleActions({
+const data = handleActions({
     [fetchFollowersRequest]: (state, action) => [],
     [fetchFollowersSuccess]: (state, action) => action.payload,
   },
@@ -39,12 +39,12 @@ const error = handleActions({
 );
 
 const getIsFetching = state => state.followers.isFetching;
-const getFollowersIds = state => state.followers.ids;
+const getFollowers = state => state.followers.data;
 const getError = state => state.followers.error;
 
 export default combineReducers({
   isFetching,
-  ids,
+  data,
   error,
 });
 
@@ -53,6 +53,6 @@ export {
   fetchFollowersSuccess,
   fetchFollowersFailure,
   getIsFetching,
-  getFollowersIds,
+  getFollowers,
   getError,
 };

@@ -3,16 +3,16 @@ import { combineReducers } from 'redux'
 
 const {
   users: {
-    getDataRequest: fetchUserRequest,
-    getDataSuccess: fetchUserSuccess,
-    getDataFailure: fetchUserFailure,
+    getUserRequest: fetchUserRequest,
+    getUserSuccess: fetchUserSuccess,
+    getUserFailure: fetchUserFailure,
     getTokenInfo: fetchTokenRequest,
   },
 } = createActions({
   USERS: {
-    GET_DATA_REQUEST: null,
-    GET_DATA_SUCCESS: null,
-    GET_DATA_FAILURE: null,
+    GET_USER_REQUEST: null,
+    GET_USER_SUCCESS: null,
+    GET_USER_FAILURE: null,
     GET_TOKEN_INFO: null,
   },
 });

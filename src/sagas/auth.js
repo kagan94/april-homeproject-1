@@ -1,7 +1,7 @@
-import { call, put, take, select} from 'redux-saga/effects'
-import { getTokenFromLocalStorage, removeTokenFromLocalStorage, setTokenToLocalStorage } from '../localStorage'
-import { authorize, logout, getIsAuthorized } from '../ducks/auth'
-import * as api from '../api'
+import { call, put, take, select} from 'redux-saga/effects';
+import { getTokenFromLocalStorage, removeTokenFromLocalStorage, setTokenToLocalStorage } from '../localStorage';
+import { authorize, logout, getIsAuthorized } from '../ducks/auth';
+import * as api from '../api';
 
 function* authFlow() {
   while (true) {
@@ -9,16 +9,13 @@ function* authFlow() {
     const localStorageToken = yield call(getTokenFromLocalStorage);
     let token;
 
-    if (!isAuthorized && localStorageToken) {
+    if (!isAuthorized && localStorageToken && localStorageToken !== 'undefined') {
       token = localStorageToken;
       yield put(authorize());
     } else {
-      console.log('auth saga: wait until receive "authorize"');
       const action = yield take(authorize);
       token = action.payload;
     }
-
-    console.log('saga: received request to wait until receive "authorize"');
 
     yield call(api.setTokenApi, token);
     yield call(setTokenToLocalStorage, token);
